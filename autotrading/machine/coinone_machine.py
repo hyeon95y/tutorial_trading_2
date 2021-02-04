@@ -3,11 +3,13 @@ import configparser
 import hashlib
 import hmac
 import json
+import os
 import time
 
 import requests
 
 from autotrading.machine.base_machine import Machine
+from autotrading.project_paths import PROJECT_PATH
 
 
 class CoinOneMachine(Machine):
@@ -36,7 +38,8 @@ class CoinOneMachine(Machine):
         config.ini에서 access_token, secret_key 정보를 읽어옵니다.
         """
         config = configparser.ConfigParser()
-        config.read("conf/config.ini")
+        config_path = os.path.abspath(os.path.join(PROJECT_PATH, 'conf', 'config.ini'))
+        config.read(config_path)
         self.access_token = config["COINONE"]["access_token"]
         self.secret_key = config["COINONE"]["secret_key"]
 

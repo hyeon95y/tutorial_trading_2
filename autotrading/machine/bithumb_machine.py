@@ -3,12 +3,14 @@ import configparser
 import hashlib
 import hmac
 import math
+import os
 import time
 import urllib
 
 import requests
 
 from autotrading.machine.base_machine import Machine
+from autotrading.project_paths import PROJECT_PATH
 
 
 class BithumbMachine(Machine):
@@ -40,7 +42,8 @@ class BithumbMachine(Machine):
         config.ini파일에서 connect_key, secret_key, username을 읽어옵니다.
         """
         config = configparser.ConfigParser()
-        config.read("conf/config.ini")
+        config_path = os.path.abspath(os.path.join(PROJECT_PATH, 'conf', 'config.ini'))
+        config.read(config_path)
         self.CLIENT_ID = config["BITHUMB"]["connect_key"]
         self.CLIENT_SECRET = config["BITHUMB"]["secret_key"]
         self.USER_NAME = config["BITHUMB"]["username"]

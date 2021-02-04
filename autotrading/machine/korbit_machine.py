@@ -1,9 +1,11 @@
 import configparser
+import os
 import time
 
 import requests
 
 from autotrading.machine.base_machine import Machine
+from autotrading.project_paths import PROJECT_PATH
 
 
 class KorbitMachine(Machine):
@@ -22,7 +24,8 @@ class KorbitMachine(Machine):
         config.ini에서 client_id, client_secret, username, password 정보를 읽어옵니다.
         """
         config = configparser.ConfigParser()
-        config.read("conf/config.ini")
+        config_path = os.path.abspath(os.path.join(PROJECT_PATH, 'conf', 'config.ini'))
+        config.read(config_path)
         self.CLIENT_ID = config["KORBIT"]["client_id"]
         self.CLIENT_SECRET = config["KORBIT"]["client_secret"]
         self.USER_NAME = config["KORBIT"]["username"]

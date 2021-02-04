@@ -1,4 +1,4 @@
-# tutorial_trading_1
+# tutorial_trading_2
 
 This repository is a refactoring of tutorial from [혼자서 만드는 가상화폐 자동거래 시스템](https://wikidocs.net/book/1436)
 
